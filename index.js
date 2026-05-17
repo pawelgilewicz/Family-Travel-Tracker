@@ -42,6 +42,7 @@ async function checkVisisted() {
 async function getCurrentUser() {
   const result = await db.query("SELECT * FROM users");
   users = result.rows;
+  console.log(users);
   return users.find((user) => user.id == currentUserId);
 }
 
@@ -53,7 +54,7 @@ app.get("/", async (req, res) => {
     countries: countries,
     total: countries.length,
     users: users,
-    color: "blue",
+    color: countries.color,
   });
 });
 app.post("/add", async (req, res) => {
